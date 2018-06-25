@@ -1,0 +1,9 @@
+<resources>
+  <string name="app_name">sample_02</string>
+  <string name="account">Account</string>
+  <string name="user_account">user_account</string>
+  <string name="password">Password</string>
+  <string name="user_password">user_password</string>
+  <string name="login">login</string>
+  <string name="cancel">cancel</string>
+</resources>
