@@ -21,6 +21,11 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     findViews();
+    btnHelp.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View view) {
+        new AlertDialog.Builder(MainActivity.this).setTitle("BMI說明").setMessage("體重(kg)/身高的平方(m)").setNegativeButton("OK",null).show();
+      }
+    });
   }
 
   private void findViews() {
@@ -33,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
   public void bmi(View v){
     String w = edWeight.getText().toString();
     String h = edHeight.getText().toString();
+    if(w.length()==0 || h.length()==0){
+      new AlertDialog.Builder(MainActivity.this).setTitle("提示").setMessage("請確認已輸入必要的身高與體重數值").setNegativeButton("OK",null).show();
+      return;
+    }
     float weight = Float.parseFloat(w);
     float height = Float.parseFloat(h);
     float bmi = weight/(height*height);
