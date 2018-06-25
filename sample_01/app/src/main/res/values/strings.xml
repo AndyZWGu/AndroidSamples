@@ -1,6 +1,6 @@
 <resources>
   <!--layout-->
-  <string name="app_name">bmi</string>
+  <string name="app_name">sample_01</string>
   <string name="weight">weight</string>
   <string name="height">height</string>
   <string name="help">help</string>
