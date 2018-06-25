@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResultActivity"
+    >
+
+  <TextView
+      android:id="@+id/tv_result"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="8dp"
+      android:text="@string/result"
+      android:textSize="30sp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+  <TextView
+      android:id="@+id/tv_result_bmi"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="BMI is "
+      android:textSize="20sp"
+      app:layout_constraintStart_toStartOf="@+id/tv_result"
+      app:layout_constraintTop_toBottomOf="@+id/tv_result"
+      />
+  <TextView
+      android:id="@+id/tv_help"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="TextView"
+      android:textSize="14sp"
+      app:layout_constraintStart_toStartOf="@+id/tv_result_bmi"
+      app:layout_constraintTop_toBottomOf="@+id/tv_result_bmi"
+      />
+</android.support.constraint.ConstraintLayout>

@@ -1,3 +1,11 @@
 <resources>
-  <string name="app_name">sample_01</string>
+  <!--layout-->
+  <string name="app_name">bmi</string>
+  <string name="weight">weight</string>
+  <string name="height">height</string>
+  <string name="help">help</string>
+  <string name="calculate_bmi">calculate bmi</string>
+  <string name="result">result</string>
+  <!--class-->
+  <string name="bmi_extra">BMI_EXTRA</string>
 </resources>

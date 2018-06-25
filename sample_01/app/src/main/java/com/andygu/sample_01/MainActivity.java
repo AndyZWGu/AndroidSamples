@@ -1,5 +1,6 @@
 package com.andygu.sample_01;
 
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -45,14 +46,20 @@ public class MainActivity extends AppCompatActivity {
     float weight = Float.parseFloat(w);
     float height = Float.parseFloat(h);
     float bmi = weight/(height*height);
-    Log.d("BMI is",String.valueOf(bmi));
-    Toast.makeText(this, "BMI is"+String.valueOf(bmi), Toast.LENGTH_SHORT).show();
-    new AlertDialog.Builder(this)
-        .setTitle("Result")
-        .setMessage("BMI is"+String.valueOf(bmi))
-        .setNegativeButton("OK",null)
-        .setNeutralButton("CANCEL",null)
-        .show();
+    Intent intent = new Intent(this,ResultActivity.class);
+    Bundle bag = new Bundle();
+    bag.putFloat(getString(R.string.bmi_extra),bmi);
+    bag.putString("help","計算方法：體重(kg)/身高的平方(m)");
+    intent.putExtras(bag);
+    startActivity(intent);
+    //Log.d("BMI is",String.valueOf(bmi));
+    //Toast.makeText(this, "BMI is"+String.valueOf(bmi), Toast.LENGTH_SHORT).show();
+    //new AlertDialog.Builder(this)
+    //    .setTitle("Result")
+    //    .setMessage("BMI is"+String.valueOf(bmi))
+    //    .setNegativeButton("OK",null)
+    //    .setNeutralButton("CANCEL",null)
+    //    .show();
   }
 
 }
