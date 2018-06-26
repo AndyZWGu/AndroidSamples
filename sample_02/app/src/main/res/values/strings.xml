@@ -6,4 +6,6 @@
   <string name="user_password">user_password</string>
   <string name="login">login</string>
   <string name="cancel">cancel</string>
+  <string name="title_activity_base">baseActivity</string>
+  <string name="title_activity_test">TestActivity</string>
 </resources>

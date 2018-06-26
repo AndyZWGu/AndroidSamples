@@ -30,6 +30,9 @@ public class LoginActivity extends AppCompatActivity {
     //unidynaoffice@unidyna.com  unidyna12976504
     if(user_account.equals("unidyna") && user_password.equals("123")){
       Toast.makeText(this,"登入成功",Toast.LENGTH_LONG).show();
+      getIntent().putExtra("LOGIN_ACCOUNT",user_account);
+      getIntent().putExtra("LOGIN_PASSWORD",user_password);
+      setResult(RESULT_OK,getIntent());
       finish();
     }else{
       new AlertDialog.Builder(this).setTitle("錯誤").setMessage("登入失敗").setNegativeButton("確定",null).show();
