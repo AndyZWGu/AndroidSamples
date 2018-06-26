@@ -1,6 +1,7 @@
 package com.andygu.sample_02;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,13 +23,18 @@ public class MainActivity extends AppCompatActivity {
     }
   }
 
+  //請求返回
   @Override protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     if(requestCode == RC_LOGIN){
       if(resultCode == RESULT_OK){
-        String login_account = data.getStringExtra("LOGIN_ACCOUNT");
-        String login_password = data.getStringExtra("LOGIN_PASSWORD");
-        Log.d("使用者登入的帳號密碼為","a : "+login_account+"\n"+"b :"+login_password);
+        String loginAccount = data.getStringExtra("LOGIN_ACCOUNT");
+        String loginPassword = data.getStringExtra("LOGIN_PASSWORD");
+        Log.d("透過傳遞取得使用者登入的帳號密碼為","帳號 : "+loginAccount+" / "+"b密碼 :"+loginPassword);
+        SharedPreferences pref = getSharedPreferences("userProfile",MODE_PRIVATE);
+        String prefLoginAccount = pref.getString("user_account","");
+        String prefLoginPassword = pref.getString("user_password","");
+        Log.d("透過Pref取得使用者登入的帳號密碼為","帳號 : "+prefLoginAccount+" / "+"b 密碼 :"+prefLoginPassword);
       }else{
         finish();
       }

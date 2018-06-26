@@ -1,5 +1,6 @@
 package com.andygu.sample_02;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,10 @@ public class LoginActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_login);
     findViews();
+    //假設取得已經登入的資料,若存在就自動填入帳號密碼
+    SharedPreferences pref = getSharedPreferences("userProfile",MODE_PRIVATE);
+    edAccount.setText(pref.getString("user_account",""));
+    edPassword.setText(pref.getString("user_password",""));
   }
 
 
@@ -25,13 +30,18 @@ public class LoginActivity extends AppCompatActivity {
   }
 
   public void login(View v){
-    String user_account = edAccount.getText().toString();
-    String user_password = edPassword.getText().toString();
-    //unidynaoffice@unidyna.com  unidyna12976504
-    if(user_account.equals("unidyna") && user_password.equals("123")){
+    String userAccount = edAccount.getText().toString();
+    String userPassword = edPassword.getText().toString();
+    //unidyna 123
+    if(userAccount.equals("unidyna") && userPassword.equals("123")){
+      //20180626 保存到偏好設定(簡單資料等等)
+      SharedPreferences userPref =  getSharedPreferences("userProfile",MODE_PRIVATE);
+      userPref.edit().putString("user_account",userAccount).putString("user_password",userPassword).commit();//除commit()另外還有apply()
+
       Toast.makeText(this,"登入成功",Toast.LENGTH_LONG).show();
-      getIntent().putExtra("LOGIN_ACCOUNT",user_account);
-      getIntent().putExtra("LOGIN_PASSWORD",user_password);
+      //保存到Intent
+      getIntent().putExtra("LOGIN_ACCOUNT",userAccount);
+      getIntent().putExtra("LOGIN_PASSWORD",userPassword);
       setResult(RESULT_OK,getIntent());
       finish();
     }else{
