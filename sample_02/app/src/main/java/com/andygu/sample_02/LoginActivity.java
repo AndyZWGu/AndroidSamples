@@ -32,8 +32,8 @@ public class LoginActivity extends AppCompatActivity {
   public void reset(View v){
     //清除帳戶資料
     SharedPreferences pref = getSharedPreferences("userProfile",MODE_PRIVATE);
-
-    pref.edit().clear();
+    pref.edit().clear().apply();//apply沒返回值,效能較好
+    new AlertDialog.Builder(this).setTitle("成功").setMessage("已清除暫存帳密,請重啟app查看!").setNegativeButton("確定",null).show();
   }
 
   public void login(View v){
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     if(userAccount.equals("unidyna") && userPassword.equals("123")){
       //20180626 保存到偏好設定(簡單資料等等)
       SharedPreferences userPref =  getSharedPreferences("userProfile",MODE_PRIVATE);
-      userPref.edit().putString("user_account",userAccount).putString("user_password",userPassword).commit();//除commit()另外還有apply()
+      userPref.edit().putString("user_account",userAccount).putString("user_password",userPassword).apply();//除commit()另外還有apply()
 
       Toast.makeText(this,"登入成功",Toast.LENGTH_LONG).show();
       //保存到Intent
