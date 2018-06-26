@@ -29,6 +29,13 @@ public class LoginActivity extends AppCompatActivity {
     edPassword = findViewById(R.id.ed_password);
   }
 
+  public void reset(View v){
+    //清除帳戶資料
+    SharedPreferences pref = getSharedPreferences("userProfile",MODE_PRIVATE);
+
+    pref.edit().clear();
+  }
+
   public void login(View v){
     String userAccount = edAccount.getText().toString();
     String userPassword = edPassword.getText().toString();
