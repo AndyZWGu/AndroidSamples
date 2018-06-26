@@ -1,6 +1,8 @@
 package com.andygu.sample_03;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +22,11 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+        Snackbar.make(view, "測試fab", Snackbar.LENGTH_LONG).setAction("按我", new View.OnClickListener() {
+          @Override public void onClick(View v) {
+
+          }
+        }).setActionTextColor(Color.YELLOW).show();
       }
     });
   }
