@@ -1,4 +1,4 @@
-package com.andygu.sample_02;
+package com.andygu.sample_02.activity;
 
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.andygu.sample_02.R;
 
 public class LoginActivity extends AppCompatActivity {
 
