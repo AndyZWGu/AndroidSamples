@@ -1,26 +1,49 @@
 package com.andygu.sample_02;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
 
   public static final int RC_LOGIN = 1; //代表該功能的常數
   private boolean isLogin = false;
+  private ListView lvFunc;
+  String[] func = {"餘額查詢","交易明細","最新消息","投資理財","離開"};
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    //Toolbar
     Toolbar mToolbarTb = (Toolbar) findViewById(R.id.tb_toolbar);
     setSupportActionBar(mToolbarTb);
+    //ListView
+    lvFunc = findViewById(R.id.lv_func);
+    ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_expandable_list_item_1,func);
+    lvFunc.setAdapter(adapter);
+    //按鈕事件
+    lvFunc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        new AlertDialog.Builder(MainActivity.this).setTitle("事件").setMessage("你按下ListView的Item").setNegativeButton("OK",null).show();
+      }
+    });
     //沒登入時返回登入畫面
     if(!isLogin){
       Intent intent = new Intent(this,LoginActivity.class);
