@@ -6,6 +6,10 @@
   <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
   <uses-permission android:name="android.permission.READ_PROFILE"/>
   <uses-permission android:name="android.permission.READ_CONTACTS"/>
+  <!-- 網路 -->
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <!-- 存取手機記憶卡的權限 -->
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
   <application
       android:allowBackup="true"
@@ -22,6 +26,13 @@
       </intent-filter>
     </activity>
     <activity android:name=".activity.LoginActivity">
+    </activity>
+    <activity
+        android:name=".activity.FinanceActivity"
+        android:label="@string/title_activity_finance"
+        android:theme="@style/AppTheme">
+    </activity>
+    <activity android:name=".activity.AddFinanceActivity">
     </activity>
   </application>
 

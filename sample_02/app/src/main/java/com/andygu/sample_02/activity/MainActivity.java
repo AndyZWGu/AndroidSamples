@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
   public static final int RC_LOGIN = 1; //代表該功能的常數
   private boolean isLogin = false;
-  String[] data = {"餘額查詢","交易明細","最新消息","投資理財","離開"};
-  String[] data2 = {"個人帳戶","關於我們","聯絡資訊","版權聲明","離開"};
-  int[] icons = { R.drawable.func_account,R.drawable.func_about,R.drawable.func_contact,R.drawable.func_copy,R.drawable.func_exit };
+  String[] data = {"最新消息","餘額查詢","交易明細","離開"};
+  String[] data2 = {"投資理財","個人帳戶","關於我們","聯絡資訊","版權聲明","離開"};
+  int[] icons = {R.drawable.func_finance, R.drawable.func_account,R.drawable.func_about,R.drawable.func_contact,R.drawable.func_copy,R.drawable.func_exit };
 
   private ArrayAdapter lvAdapter;
   private ArrayAdapter gvAdapter;
@@ -106,6 +106,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       new AlertDialog.Builder(this).setTitle("事件").setMessage("你按下setting").setNegativeButton("OK",null).show();
       return true;
     }
+    if(id == R.id.action_logout){
+      SharedPreferences pref = getSharedPreferences("userProfile",MODE_PRIVATE);
+      pref.edit().clear().apply();//apply沒返回值,效能較好
+      Intent intent = new Intent(this,LoginActivity.class);
+      startActivityForResult(intent,RC_LOGIN);
+      return true;
+    }
     return super.onOptionsItemSelected(item);
   }
 
@@ -166,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     if(parent instanceof ListView){
       String clickText = lvAdapter.getItem(position).toString();
       if(clickText=="離開"){
-        finish();
+        System.exit(0);
         return;
       }
       new AlertDialog.Builder(MainActivity.this).setTitle("事件").setMessage("你按下ListView的Item為"+clickText).setNegativeButton("OK",null).show();
@@ -175,6 +182,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       //GirdView利用Image的Id判別
       String clickText = gvAdapter.getItem(position).toString();
       switch ((int)id){
+        case R.drawable.func_finance:
+          //new AlertDialog.Builder(MainActivity.this).setTitle("事件").setMessage("你按下GistView的Item為"+clickText).setNegativeButton("OK",null).show();
+          //投資理財功能
+          startActivity(new Intent(MainActivity.this,FinanceActivity.class));
+          break;
         case R.drawable.func_account:
           new AlertDialog.Builder(MainActivity.this).setTitle("事件").setMessage("你按下GistView的Item為"+clickText).setNegativeButton("OK",null).show();
           break;
@@ -188,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
           new AlertDialog.Builder(MainActivity.this).setTitle("事件").setMessage("你按下GistView的Item為"+clickText).setNegativeButton("OK",null).show();
           break;
         case R.drawable.func_exit:
-          finish();
+          System.exit(0);
           break;
         default:
           break;

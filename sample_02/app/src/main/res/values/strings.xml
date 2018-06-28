@@ -10,4 +10,5 @@
   <string name="title_activity_test">TestActivity</string>
   <string name="reset">reset</string>
   <string name="setting">setting</string>
+  <string name="title_activity_finance">FinanceActivity</string>
 </resources>
