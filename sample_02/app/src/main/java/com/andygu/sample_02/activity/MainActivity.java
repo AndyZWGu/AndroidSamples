@@ -80,13 +80,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     super.onActivityResult(requestCode, resultCode, data);
     if(requestCode == RC_LOGIN){
       if(resultCode == RESULT_OK){
-        String loginAccount = data.getStringExtra("LOGIN_ACCOUNT");
-        String loginPassword = data.getStringExtra("LOGIN_PASSWORD");
-        Log.d("透過傳遞取得使用者登入的帳號密碼為","帳號 : "+loginAccount+" / "+"b密碼 :"+loginPassword);
-        SharedPreferences pref = getSharedPreferences("userProfile",MODE_PRIVATE);
-        String prefLoginAccount = pref.getString("user_account","");
-        String prefLoginPassword = pref.getString("user_password","");
-        Log.d("透過Pref取得使用者登入的帳號密碼為","帳號 : "+prefLoginAccount+" / "+"b 密碼 :"+prefLoginPassword);
+        //String loginAccount = data.getStringExtra("LOGIN_ACCOUNT");
+        //String loginPassword = data.getStringExtra("LOGIN_PASSWORD");
+        //Log.d("透過傳遞取得使用者登入的帳號密碼為","帳號 : "+loginAccount+" / "+"b密碼 :"+loginPassword);
+        //SharedPreferences pref = getSharedPreferences("userProfile",MODE_PRIVATE);
+        //String prefLoginAccount = pref.getString("user_account","");
+        //String prefLoginPassword = pref.getString("user_password","");
+        //Log.d("透過Pref取得使用者登入的帳號密碼為","帳號 : "+prefLoginAccount+" / "+"b 密碼 :"+prefLoginPassword);
       }else{
         finish();
       }
@@ -188,7 +188,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
           startActivity(new Intent(MainActivity.this,FinanceActivity.class));
           break;
         case R.drawable.func_account:
-          new AlertDialog.Builder(MainActivity.this).setTitle("事件").setMessage("你按下GistView的Item為"+clickText).setNegativeButton("OK",null).show();
+          //個人帳戶功能
+          //new AlertDialog.Builder(MainActivity.this).setTitle("事件").setMessage("你按下GistView的Item為"+clickText).setNegativeButton("OK",null).show();
+          startActivity(new Intent(MainActivity.this,UserProfileActivity.class));
           break;
         case R.drawable.func_about:
           new AlertDialog.Builder(MainActivity.this).setTitle("事件").setMessage("你按下GistView的Item為"+clickText).setNegativeButton("OK",null).show();
