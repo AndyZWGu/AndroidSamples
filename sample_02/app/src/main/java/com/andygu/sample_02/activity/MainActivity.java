@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.andygu.sample_02.R;
 import com.andygu.sample_02.activity.*;
@@ -37,10 +38,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
   private Spinner notify;
   private ListView lvFunc;
   private GridView gvFunc;
+  private TextView tvWelcome;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    //沒登入時返回登入畫面
+    if(!isLogin){
+      Intent intent = new Intent(this,LoginActivity.class);
+      startActivityForResult(intent,RC_LOGIN);
+      //startActivity(intent); //會有返回鍵無視登入的Bug,故用上面方法轉換頁面才對
+    }
+
     //Toolbar
     Toolbar mToolbarTb = (Toolbar) findViewById(R.id.tb_toolbar);
     setSupportActionBar(mToolbarTb);
@@ -67,12 +77,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     notify.setAdapter(spAdapter);
     notify.setOnItemSelectedListener(this);
 
-    //沒登入時返回登入畫面
-    if(!isLogin){
-      Intent intent = new Intent(this,LoginActivity.class);
-      startActivityForResult(intent,RC_LOGIN);
-      //startActivity(intent); //會有返回鍵無視登入的Bug,故用上面方法轉換頁面才對
-    }
+    //Welcome User
+    tvWelcome = findViewById(R.id.tv_welcome);
+    SharedPreferences userPref =  getSharedPreferences("userProfile",MODE_PRIVATE);
+    String uName = userPref.getString("u_name","");
+    tvWelcome.setText("Welcome User "+uName);
+
   }
 
   //請求返回

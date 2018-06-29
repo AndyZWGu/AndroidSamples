@@ -1,6 +1,7 @@
 package com.andygu.sample_02.activity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,11 +42,13 @@ public class AddFinanceActivity extends AppCompatActivity {
     int amount = Integer.parseInt(edAmount.getText().toString());
     ContentValues cv = new ContentValues();
     cv.put("cdate",cdate);
-    cv.put("info",cdate);
-    cv.put("amount",cdate);
+    cv.put("info",info);
+    cv.put("amount",amount);
     //呼叫Help進行資料庫新增
     Long id = myDBHelper.getWritableDatabase().insert("exp",null,cv);
     Log.d("ADD","id="+id);
+    Intent intent = new Intent(this,FinanceActivity.class);
+    startActivity(intent);
   }
 
   public void returnMenu(View v){
