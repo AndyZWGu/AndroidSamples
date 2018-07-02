@@ -25,7 +25,7 @@ public class AddFinanceActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_add_finance);
     findViews();
-    myDBHelper = new MyDBHelper(this,"expense.db",null,1);
+    myDBHelper = MyDBHelper.getInstance(this);
   }
 
   public void findViews(){

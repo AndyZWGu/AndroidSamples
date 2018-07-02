@@ -2,13 +2,12 @@ package com.andygu.sample_02.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Icon;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +19,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.andygu.sample_02.R;
-import com.andygu.sample_02.activity.*;
 import com.andygu.sample_02.adapter.IconAdapter;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,
@@ -28,9 +26,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
   public static final int RC_LOGIN = 1; //代表該功能的常數
   private boolean isLogin = false;
-  String[] data = {"最新消息","餘額查詢","交易明細","離開"};
-  String[] data2 = {"投資理財","個人帳戶","關於我們","聯絡資訊","版權聲明","離開"};
-  int[] icons = {R.drawable.func_finance, R.drawable.func_account,R.drawable.func_about,R.drawable.func_contact,R.drawable.func_copy,R.drawable.func_exit };
+  String[] data = {"手機聯絡人查詢","最新消息","餘額查詢","交易明細","離開"};
+  String[] data2 = {"投資理財","個人帳戶","關於我們","公司資訊","版權聲明","離開"};
+  int[] icons = {R.drawable.func_finance, R.drawable.func_account,R.drawable.func_about,R.drawable.func_company,R.drawable.func_copy,R.drawable.func_exit };
 
   private ArrayAdapter lvAdapter;
   private ArrayAdapter gvAdapter;
@@ -77,12 +75,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     notify.setAdapter(spAdapter);
     notify.setOnItemSelectedListener(this);
 
-    //Welcome User
-    tvWelcome = findViewById(R.id.tv_welcome);
-    SharedPreferences userPref =  getSharedPreferences("userProfile",MODE_PRIVATE);
-    String uName = userPref.getString("u_name","");
-    tvWelcome.setText("Welcome User "+uName);
-
   }
 
   //請求返回
@@ -90,6 +82,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     super.onActivityResult(requestCode, resultCode, data);
     if(requestCode == RC_LOGIN){
       if(resultCode == RESULT_OK){
+        //Welcome User
+        tvWelcome = findViewById(R.id.tv_welcome);
+        SharedPreferences userPref =  getSharedPreferences("userProfile",MODE_PRIVATE);
+        String uName = userPref.getString("u_name","");
+        tvWelcome.setText("安安 "+uName);
         //String loginAccount = data.getStringExtra("LOGIN_ACCOUNT");
         //String loginPassword = data.getStringExtra("LOGIN_PASSWORD");
         //Log.d("透過傳遞取得使用者登入的帳號密碼為","帳號 : "+loginAccount+" / "+"b密碼 :"+loginPassword);
@@ -182,6 +179,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     //用parent的型別,view的型別會是TextView
     if(parent instanceof ListView){
       String clickText = lvAdapter.getItem(position).toString();
+      if(clickText=="手機聯絡人查詢"){
+        startActivity(new Intent(MainActivity.this,ContactsContentActivity.class));
+        return;
+      }
       if(clickText=="離開"){
         System.exit(0);
         return;
@@ -205,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         case R.drawable.func_about:
           new AlertDialog.Builder(MainActivity.this).setTitle("事件").setMessage("你按下GistView的Item為"+clickText).setNegativeButton("OK",null).show();
           break;
-        case R.drawable.func_contact:
+        case R.drawable.func_company:
           new AlertDialog.Builder(MainActivity.this).setTitle("事件").setMessage("你按下GistView的Item為"+clickText).setNegativeButton("OK",null).show();
           break;
         case R.drawable.func_copy:

@@ -5,11 +5,13 @@
   <!-- To auto-complete the email text field in the login form with the user's emails -->
   <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
   <uses-permission android:name="android.permission.READ_PROFILE"/>
-  <uses-permission android:name="android.permission.READ_CONTACTS"/>
   <!-- 網路 -->
   <uses-permission android:name="android.permission.INTERNET"/>
   <!-- 存取手機記憶卡的權限 -->
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <!--讀取與寫入聯絡人-->
+  <uses-permission android:name="android.permission.READ_CONTACTS"/>
+  <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
 
   <application
       android:allowBackup="true"
@@ -35,6 +37,10 @@
     <activity android:name=".activity.AddFinanceActivity">
     </activity>
     <activity android:name=".activity.UserProfileActivity">
+    </activity>
+    <activity android:name=".contactsContentActivity">
+    </activity>
+    <activity android:name=".activity.ContactsContentActivity">
     </activity>
   </application>
 

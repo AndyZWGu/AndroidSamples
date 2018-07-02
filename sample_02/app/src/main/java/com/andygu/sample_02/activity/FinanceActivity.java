@@ -35,7 +35,7 @@ public class FinanceActivity extends AppCompatActivity {
 
     findViews();
 
-    myDBHelper = new MyDBHelper(this,"expense.db",null,1);
+    myDBHelper = MyDBHelper.getInstance(this);
     Cursor cursor = myDBHelper.getReadableDatabase().rawQuery("SELECT * FROM exp",null);
     //simple_expandable_list_item_2為一列的Layout,不超過兩欄,或是自行配置,flags代表資料異動是否刷新並重新查詢
     //SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_expandable_list_item_2
