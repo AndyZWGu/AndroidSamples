@@ -7,11 +7,13 @@
   <uses-permission android:name="android.permission.READ_PROFILE"/>
   <!-- 網路 -->
   <uses-permission android:name="android.permission.INTERNET"/>
-  <!-- 存取手機記憶卡的權限 -->
+  <!-- 寫入手機記憶卡的權限 -->
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-  <!--讀取與寫入聯絡人-->
+  <!-- 讀取與寫入聯絡人 -->
   <uses-permission android:name="android.permission.READ_CONTACTS"/>
   <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+<!--讀取取手機記憶卡的權限-->
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
   <application
       android:allowBackup="true"
@@ -41,6 +43,8 @@
     <activity android:name=".contactsContentActivity">
     </activity>
     <activity android:name=".activity.ContactsContentActivity">
+    </activity>
+    <activity android:name=".activity.PictureActivity">
     </activity>
   </application>
 
