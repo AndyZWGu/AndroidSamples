@@ -2,18 +2,29 @@ package com.andygu.sample_02.activity;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.GridView;
+import android.widget.SimpleCursorAdapter;
 import com.andygu.sample_02.R;
+
+//CursorLoader 資料庫更動時,非同步更新資料
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 
-public class PictureActivity extends AppCompatActivity {
+public class PictureActivity extends AppCompatActivity implements android.app.LoaderManager.LoaderCallbacks<Cursor> {
 
   private static final int REQUEST_READ_STORAGE = 3;
+  private SimpleCursorAdapter adapter;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -48,5 +59,27 @@ public class PictureActivity extends AppCompatActivity {
   }
 
   private void readThumbnail() {
+    GridView grid = findViewById(R.id.grid);
+    String[] from = { MediaStore.Images.Thumbnails.DATA,MediaStore.Images.Media.DISPLAY_NAME};
+    int[] to = new int[]{R.id.thumb_image,R.id.thumb_text};
+    adapter = new SimpleCursorAdapter(getBaseContext(),R.layout.thumb_item,null,from,to,0);
+    grid.setAdapter(adapter);
+    getLoaderManager().initLoader(0,null,this);
+
+  }
+
+
+  @Override public android.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    //查詢的資料位置
+    Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+    return new android.content.CursorLoader(this,uri,null,null,null,null);
+  }
+
+  @Override public void onLoadFinished(android.content.Loader<Cursor> loader, Cursor data) {
+    adapter.swapCursor(data);
+  }
+
+  @Override public void onLoaderReset(android.content.Loader<Cursor> loader) {
+
   }
 }
