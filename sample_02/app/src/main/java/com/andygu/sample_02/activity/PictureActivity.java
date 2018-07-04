@@ -1,6 +1,7 @@
 package com.andygu.sample_02.activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -10,6 +11,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleCursorAdapter;
 import com.andygu.sample_02.R;
@@ -21,7 +24,8 @@ import android.support.v4.content.Loader;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 
-public class PictureActivity extends AppCompatActivity implements android.app.LoaderManager.LoaderCallbacks<Cursor> {
+public class PictureActivity extends AppCompatActivity implements android.app.LoaderManager.LoaderCallbacks<Cursor>,
+    AdapterView.OnItemClickListener {
 
   private static final int REQUEST_READ_STORAGE = 3;
   private SimpleCursorAdapter adapter;
@@ -65,7 +69,7 @@ public class PictureActivity extends AppCompatActivity implements android.app.Lo
     adapter = new SimpleCursorAdapter(getBaseContext(),R.layout.thumb_item,null,from,to,0);
     grid.setAdapter(adapter);
     getLoaderManager().initLoader(0,null,this);
-
+    grid.setOnItemClickListener(this);
   }
 
 
@@ -81,5 +85,12 @@ public class PictureActivity extends AppCompatActivity implements android.app.Lo
 
   @Override public void onLoaderReset(android.content.Loader<Cursor> loader) {
 
+  }
+
+  @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    Intent intent = new Intent(this,PictureDetailActivity.class);
+    //將目前點擊的項目位置放入Intent中
+    intent.putExtra("POSITION",position);
+    startActivity(intent);
   }
 }
