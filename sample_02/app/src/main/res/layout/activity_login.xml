@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
+    tools:context=".activity.LoginActivity"
     >
 
   <LinearLayout
@@ -13,9 +13,9 @@
       android:layout_height="match_parent"
       android:gravity="center"
       android:orientation="vertical"
-      tools:layout_editor_absoluteX="0dp"
-      tools:layout_editor_absoluteY="47dp"
       tools:ignore="MissingConstraints"
+      tools:layout_editor_absoluteX="0dp"
+      tools:layout_editor_absoluteY="0dp"
       >
     <TextView
         android:id="@+id/tv_account"
@@ -104,12 +104,34 @@
           app:layout_constraintTop_toBottomOf="@+id/ed_password"
           />
     </LinearLayout>
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_weight="1"
-        android:text="unidyna/123"
-        />
+        android:orientation="horizontal"
+        >
+      <Button
+          android:id="@+id/btn_auto"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="40dp"
+          android:layout_weight="1"
+          android:onClick="auto"
+          android:text="帶入"
+          />
+      <Button
+          android:id="@+id/btn_reset"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="30dp"
+          android:layout_marginTop="40dp"
+          android:layout_weight="1"
+          android:onClick="reset"
+          android:text="@string/reset"
+          />
+    </LinearLayout>
   </LinearLayout>
 </android.support.constraint.ConstraintLayout>
