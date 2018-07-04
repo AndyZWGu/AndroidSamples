@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
   public static final int RC_LOGIN = 1; //代表該功能的常數
   private boolean isLogin = false;
-  String[] data = {"手機聯絡人查詢","手機圖片查詢","最新消息","餘額查詢","交易明細","離開"};
-  String[] data2 = {"投資理財","個人帳戶","關於我們","公司資訊","版權聲明","離開"};
+  String[] data = {"手機聯絡人查詢","手機圖片查詢","FragmentLifeCycle","餘額查詢","交易明細","離開"};
+  String[] data2 = {"投資理財","個人帳戶","","公司資訊","版權聲明","離開"};
   int[] icons = {R.drawable.func_finance, R.drawable.func_account,R.drawable.func_about,R.drawable.func_company,R.drawable.func_copy,R.drawable.func_exit };
 
   private ArrayAdapter lvAdapter;
@@ -185,6 +185,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       }
       if(clickText=="手機圖片查詢"){
         startActivity(new Intent(MainActivity.this,PictureActivity.class));
+        return;
+      }
+      if(clickText=="FragmentLifeCycle"){
+        startActivity(new Intent(MainActivity.this,FragmentActivity.class));
         return;
       }
       if(clickText=="離開"){

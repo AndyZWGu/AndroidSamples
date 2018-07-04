@@ -15,12 +15,12 @@
   <!-- 讀取取手機記憶卡的權限 -->
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
-  <!--圖片造成記憶體問題需要更大記憶體-->
+  <!-- 圖片造成記憶體問題需要更大記憶體 -->
   <application
-      android:largeHeap="true"
       android:allowBackup="true"
       android:icon="@mipmap/ic_launcher"
       android:label="@string/app_name"
+      android:largeHeap="true"
       android:roundIcon="@mipmap/ic_launcher_round"
       android:supportsRtl="true"
       android:theme="@style/AppTheme">
@@ -49,6 +49,8 @@
     <activity android:name=".activity.PictureActivity">
     </activity>
     <activity android:name=".activity.PictureDetailActivity">
+    </activity>
+    <activity android:name=".activity.FragmentActivity">
     </activity>
   </application>
 
