@@ -1,7 +1,7 @@
 # AndroidSamples
 Android practice sample collection~
 
-Android練習
+Android練習1
 
 sample_01 : 簡單BMI
             傳遞Intent
